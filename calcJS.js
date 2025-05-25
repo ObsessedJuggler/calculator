@@ -55,36 +55,24 @@ document.addEventListener('keydown', (event) => {
 	}
 });
 
-/*document.querySelector('.playAudio').addEventListener('click', () => {
-	
- 	const audio = document.getElementById('bgMusic');
-	const button = document.querySelector('.playAudio');
-	
+const audio = document.getElementById('audioElement');
+const timeDisplay = document.getElementById('trackTime');
+let isPlaying = false;
+
+function toggleAudio() {
 	if (audio.paused) {
-		audio.play()
-		.then(() => {
-			button.textContent = '⏸️';
-		})		
-		.catch(err => {
-			console.error('Ошибка при воспроизведении:', err);
-		});
+		audio.play();
+		isPlaying = true;
+		document.querySelector('.playAudio').textContent = '⏸';
 	} else {
 		audio.pause();
-		button.textContent = '▶️';
+		isPlaying = false;
+		document.querySelector('.playAudio').textContent = '▶';
 	}
-}); */
+}
 
-const audio = document.getElementById('bgMusic');
-const toggleAudio = document.getElementById('toggleAudio');
-
-toggleAudio.addEventListener('change', () => {
-	if (toggleAudio.checked) {
-		console.log("Попытка воспроизведения...");
-		audio.play()
-			.then(() => console.log("Воспроизведение началось"))
-			.catch(err => console.error("Ошибка при воспроизведении:", err));
-	} else {
-		audio.pause();
-		console.log("Музыка поставлена на паузу");
-	}
+audio.addEventListener('timeupdate', () => {
+	const minutes = Math.floor(audio.currentTime / 60);
+	const seconds = Math.floor(audio.currentTime % 60).toString().padStart(2, '0');
+	timeDisplay.textContent = `${minutes}:${seconds}`;
 });
