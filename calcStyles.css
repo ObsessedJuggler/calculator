@@ -4,7 +4,7 @@ audio {
 
 @font-face {
 	font-family: 'Digital7Mono-Yz9J4';
-	src: url('fonts/digital-7-font/Digital7Mono-Yz9J4.ttf') format('truetype');
+	src: url('./Digital7Mono-Yz9J4.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
